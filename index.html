@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full">
+<html lang="es" class="h-full bg-neutral-950">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agente IA | Grupo 3 Cuenca de la NOA</title>
+    <title>Grupo 3 Cuenca de la NOA - Agente IA</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,220 +12,92 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#fffbeb',
-                            100: '#fef3c7',
-                            200: '#fde68a',
-                            300: '#fcd34d',
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
-                            800: '#92400e',
-                            900: '#78350f',
-                            950: '#451a03',
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="h-full bg-slate-950 text-slate-100 flex flex-col justify-between antialiased selection:bg-brand-500 selection:text-slate-950">
+<body class="h-full flex flex-col bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-brand-500 selection:text-neutral-950">
 
-    <header class="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
-                    <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
+    <!-- Header Profesional -->
+    <header class="border-b border-neutral-800 bg-neutral-900/60 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400">
+                    <i class="fa-solid fa-oil-well text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
-                        Grupo 3 Cuenca de la NOA
-                        <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 font-medium">IA Oficial</span>
-                    </h1>
-                    <p class="text-xs text-slate-400">Sistema Inteligente de Consulta y Asistencia</p>
+                    <h1 class="text-sm font-bold tracking-wide uppercase text-neutral-200">Grupo 3 • Cuenca del Noroeste</h1>
+                    <p class="text-xs text-brand-400 font-medium">Asistente Virtual Especializado</p>
                 </div>
             </div>
-            <div class="hidden md:flex items-center space-x-3">
-                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    <span class="w-1.5 h-1.5 mr-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-                    Agente Activo
-                </span>
-                <button onclick="openConfigModal()" class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition-colors">
-                    Configurar Código de Inserción
-                </button>
+            <div class="flex items-center space-x-2 text-xs bg-neutral-800/80 border border-neutral-700/60 px-3 py-1.5 rounded-full text-neutral-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Agente IA Activo</span>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Left Column: Information & Capabilities -->
-        <div class="lg:col-span-4 space-y-6">
-            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-brand-500/5 rounded-full blur-2xl pointer-events-none"></div>
-                
-                <h2 class="text-xl font-semibold text-white mb-2">Asistente Virtual Inteligente</h2>
-                <p class="text-sm text-slate-400 mb-6 leading-relaxed">
-                    Este entorno centraliza la interfaz de interacción con el modelo de inteligencia artificial desarrollado para las operaciones y análisis del <strong>Grupo 3 Cuenca de la NOA</strong>.
-                </p>
-
-                <div class="space-y-4">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 text-brand-400 font-bold text-sm">1</div>
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-200">Panel de Incrustación Directa</h3>
-                            <p class="text-xs text-slate-400 mt-0.5">Espacio optimizado para integrar tu código de agente existente.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 text-brand-400 font-bold text-sm">2</div>
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-200">Ejecución en Tiempo Real</h3>
-                            <p class="text-xs text-slate-400 mt-0.5">Visualización instantánea del comportamiento de tu agente incrustado.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 text-brand-400 font-bold text-sm">3</div>
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-200">Tono Profesional Corporativo</h3>
-                            <p class="text-xs text-slate-400 mt-0.5">Diseño adaptado a los estándares técnicos de la Cuenca del NOA.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col gap-3">
-                    <button onclick="openConfigModal()" class="w-full bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold py-2.5 px-4 rounded-xl text-sm transition-all shadow-lg shadow-brand-500/20">
-                        Pegar tu Código de Agente
-                    </button>
-                    <button onclick="resetAgent()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium py-2 px-4 rounded-xl text-xs transition-all border border-slate-700">
-                        Restaurar Vista de Espacio
-                    </button>
-                </div>
-            </div>
-
-            <!-- Quick Stats or Info Badge -->
-            <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
-                <div>
-                    <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Región Operativa</span>
-                    <p class="text-sm font-medium text-slate-200 mt-0.5">Cuenca del Noroeste Argentino (NOA)</p>
-                </div>
-                <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-            </div>
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Agente Inteligente de la Cuenca del Noroeste</h2>
+            <p class="mt-1 text-sm text-neutral-400">Interfaz de consulta técnica y académica sobre los temas hidrocarburíferos y exposiciones del grupo.</p>
         </div>
 
-        <!-- Right Column: Agent Embed Workspace -->
-        <div class="lg:col-span-8 flex flex-col h-[650px] bg-slate-900/90 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden relative">
-            
-            <!-- Agent Bar Header -->
-            <div class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-3 h-3 rounded-full bg-brand-500 animate-ping"></div>
-                    <span class="text-sm font-semibold text-white tracking-wide">Área de Incrustación del Agente IA</span>
-                </div>
+        <!-- Contenedor del Agente -->
+        <div class="flex-1 bg-neutral-900/40 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col min-h-[550px]">
+            <div class="bg-neutral-900 border-b border-neutral-800 px-4 py-3 flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <span class="text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded-md border border-slate-700" id="embed-status">Listo para tu Código</span>
+                    <div class="w-3 h-3 rounded-full bg-neutral-700"></div>
+                    <div class="w-3 h-3 rounded-full bg-neutral-700"></div>
+                    <div class="w-3 h-3 rounded-full bg-neutral-700"></div>
                 </div>
+                <span class="text-xs font-mono text-neutral-400">terminal-ia.js</span>
+                <div class="w-12"></div>
             </div>
 
-            <!-- Agent Container / Iframe or Fallback Preview -->
-            <div id="agent-workspace" class="flex-grow w-full h-full relative bg-slate-950 flex flex-col">
-                <div id="agent-content-wrapper" class="w-full h-full flex flex-col items-center justify-center p-8 text-center">
-                    <div class="w-16 h-16 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4 shadow-inner">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-white mb-2">Espacio Reservado para tu Agente</h3>
-                    <p class="text-sm text-slate-400 max-w-md mb-6 leading-relaxed">
-                        Ya tienes tu agente listo. Haz clic en el botón inferior para insertar tu código HTML, script o iframe personalizado de inmediato.
-                    </p>
-                    <button onclick="openConfigModal()" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold py-3 px-6 rounded-xl text-sm transition-all shadow-lg shadow-brand-500/20 flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        Insertar Código de tu Agente
-                    </button>
+            <div class="flex-1 p-4 sm:p-6 flex flex-col justify-center items-center relative">
+                
+                <!-- ======================================================== -->
+                <!-- 👇 PEGA TU EMBED DE LA IA ACÁ EN VSC 👇 --> <script type="module"
+      src="https://agent.d-id.com/v2/index.js"
+      data-mode="fabio"
+      data-client-key="ck_ssELjmzYggPiNcDPp48be"
+      data-agent-id="v2_agt_R7RhJpvE"
+      data-name="did-agent"
+      data-monitor="true"
+      data-light-mode="false"
+      data-orientation="horizontal"
+      data-position="right"
+      data-open-mode="expanded">
+</script>
+                <!-- ======================================================== -->
+                
+                <div class="w-full h-full flex flex-col items-center justify-center text-center border-2 border-dashed border-neutral-800 rounded-xl p-8 bg-neutral-950/40">
+                    <i class="fa-solid fa-code text-4xl text-brand-500 mb-3"></i>
+                    <p class="text-neutral-300 font-medium mb-1">Espacio reservado para tu código de inserción</p>
+                    <p class="text-xs text-neutral-500 max-w-md">Reemplaza este bloque o inserta tu iframe/script de IA directamente en esta sección del archivo index.html.</p>
                 </div>
+
+                <!-- ======================================================== -->
+
             </div>
         </div>
-
     </main>
 
-    <div id="config-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-            <h3 class="text-lg font-bold text-white mb-2">Incrustar tu Agente de IA</h3>
-            <p class="text-xs text-slate-400 mb-4">Pega aquí el código HTML, iframe, script o widget que ya preparaste para el Grupo 3 Cuenca de la NOA.</p>
-            
-            <textarea id="embed-code-input" rows="6" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-brand-300 placeholder-slate-600 focus:outline-none focus:border-brand-500 mb-4" placeholder='<iframe src="https://tu-agente-ia.com/embed" width="100%" height="100%"></iframe>'></textarea>
-            
-            <div class="flex justify-end space-x-3">
-                <button type="button" onclick="closeConfigModal()" class="px-4 py-2 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300">
-                    Cancelar
-                </button>
-                <button type="button" onclick="applyEmbedCode()" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 text-xs font-semibold">
-                    Cargar en el Espacio
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500 bg-slate-900/30">
-        <p>&copy; 2026 Grupo 3 Cuenca de la NOA. Todos los derechos reservados. Sistema Operativo de Agente Inteligente.</p>
+    <!-- Footer -->
+    <footer class="border-t border-neutral-900 py-4 text-center text-xs text-neutral-500">
+        Grupo 3 &bull; INSUTEC &bull; Tecnicatura Superior en Petróleo y Gas
     </footer>
 
-    <script>
-        function openConfigModal() {
-            document.getElementById('config-modal').classList.remove('hidden');
-        }
-
-        function closeConfigModal() {
-            document.getElementById('config-modal').classList.add('hidden');
-        }
-
-        function applyEmbedCode() {
-            const code = document.getElementById('embed-code-input').value.trim();
-            const workspace = document.getElementById('agent-content-wrapper');
-            
-            if (code) {
-                workspace.innerHTML = `<div class="w-full h-full flex items-center justify-center p-2">${code}</div>`;
-                document.getElementById('embed-status').innerText = 'Agente Activo Incrustado';
-                document.getElementById('embed-status').className = 'text-xs text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-md border border-brand-500/20';
-            }
-            closeConfigModal();
-        }
-
-        function resetAgent() {
-            const workspace = document.getElementById('agent-content-wrapper');
-            workspace.innerHTML = `
-                <div class="w-16 h-16 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4 shadow-inner">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                </div>
-                <h3 class="text-lg font-semibold text-white mb-2">Espacio Reservado para tu Agente</h3>
-                <p class="text-sm text-slate-400 max-w-md mb-6 leading-relaxed">
-                    Ya tienes tu agente listo. Haz clic en el botón inferior para insertar tu código HTML, script o iframe personalizado de inmediato.
-                </p>
-                                <button onclick="openConfigModal()" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold py-3 px-6 rounded-xl text-sm transition-all shadow-lg shadow-brand-500/20 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Insertar Código de tu Agente
-                </button>
-            `;
-            document.getElementById('embed-status').innerText = 'Listo para tu Código';
-            document.getElementById('embed-status').className = 'text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded-md border border-slate-700';
-        }
-    </script>
+</body>
+</html>
