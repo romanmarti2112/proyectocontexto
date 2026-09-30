@@ -211,7 +211,7 @@
             }
         });
 
-        // Alternar vistas Plan A / Plan B
+        // Alternar vistas Plan A / Plan B de forma exclusiva
         function switchMode(mode) {
             const viewA = document.getElementById('view-plan-a');
             const viewB = document.getElementById('view-plan-b');
@@ -222,10 +222,12 @@
                 viewA.classList.remove('hidden');
                 viewA.style.display = 'flex';
                 viewB.classList.add('hidden');
+                viewB.style.display = 'none';
                 btnA.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow';
                 btnB.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white';
             } else {
                 viewA.classList.add('hidden');
+                viewA.style.display = 'none';
                 viewB.classList.remove('hidden');
                 viewB.style.display = 'flex';
                 btnB.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow';
@@ -251,7 +253,7 @@
 
         const quizCheckpoints = [
             {
-                time: 0, // Al arrancar
+                time: 1, // Al arrancar
                 triggered: false,
                 tema: "Tema 1: El mercado global y los factores macroeconómicos",
                 contexto: `"El petróleo mueve al mundo en una red compleja de producción y consumo... donde la OPEP y los grandes mercados marcan el ritmo de la economía global."`,
@@ -293,7 +295,7 @@
                 explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: El declino natural de presión en yacimientos maduros que exige técnicas de recuperación secundaria y optimización de bombeo."
             },
             {
-                time: 51, // Al finalizar (49s)
+                time: 49, // Al finalizar (49s)
                 triggered: false,
                 tema: "Tema 4: Capital humano, capacitación y rol de género",
                 contexto: `"Una industria en evolución constante que exige profesionales altamente capacitados, y donde las mujeres lideran operaciones, análisis y toma de decisiones."`,
