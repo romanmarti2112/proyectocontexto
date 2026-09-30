@@ -25,16 +25,16 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .modal-enter { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-enter { animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
+            from { opacity: 0; transform: scale(0.97); }
             to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body class="h-full flex flex-col bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-brand-500 selection:text-neutral-950 overflow-x-hidden">
 
-    <header class="border-b border-neutral-800 bg-neutral-900/90 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-neutral-800 bg-neutral-900/95 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
             <div class="flex items-center space-x-2.5 min-w-0">
                 <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 shrink-0">
@@ -58,14 +58,14 @@
         </div>
     </header>
 
-    <main class="flex-1 max-w-6xl w-full mx-auto p-3 sm:p-6 lg:p-8 flex flex-col">
+    <main class="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-5 lg:p-6 flex flex-col justify-start">
         
         <!-- VISTA PLAN A: AGENTE IA (D-ID) AISLADO EN IFRAME SEGURO -->
-        <div id="view-plan-a" class="flex-1 flex-col w-full hidden">
-            <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div id="view-plan-a" class="flex-col w-full hidden">
+            <div class="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <div>
-                    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">Agente Inteligente de la Cuenca</h2>
-                    <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm text-neutral-400">Consulta en tiempo real con el asistente virtual sobre temáticas hidrocarburíferas.</p>
+                    <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-white">Agente Inteligente de la Cuenca</h2>
+                    <p class="text-xs sm:text-sm text-neutral-400">Consulta en tiempo real con el asistente virtual sobre temáticas hidrocarburíferas.</p>
                 </div>
                 <div class="flex items-center space-x-2 text-xs bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-full text-neutral-300">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -73,31 +73,31 @@
                 </div>
             </div>
 
-            <div class="flex-1 bg-neutral-900/40 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col min-h-[480px] sm:min-h-[550px] relative">
-                <div class="bg-neutral-900 border-b border-neutral-800 px-4 py-2.5 flex items-center justify-between">
+            <div class="bg-neutral-900/40 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[520px] sm:h-[600px] relative">
+                <div class="bg-neutral-900 border-b border-neutral-800 px-4 py-2.5 flex items-center justify-between shrink-0">
                     <div class="flex items-center space-x-2">
                         <div class="w-2.5 h-2.5 rounded-full bg-neutral-700"></div>
                         <div class="w-2.5 h-2.5 rounded-full bg-neutral-700"></div>
                         <div class="w-2.5 h-2.5 rounded-full bg-neutral-700"></div>
                     </div>
-                    <span class="text-[11px] font-mono text-neutral-400 truncate max-w-[180px] sm:max-w-none">d-id-agent-secure-frame</span>
+                    <span class="text-[11px] font-mono text-neutral-400">d-id-agent-secure-frame</span>
                     <div class="w-8"></div>
                 </div>
-                <div class="flex-1 relative w-full h-full flex flex-col items-center justify-center bg-black min-h-[450px]">
+                <div class="flex-1 relative w-full h-full flex flex-col items-center justify-center bg-black">
                     <iframe id="did-secure-iframe" class="w-full h-full border-0 absolute inset-0" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
                 </div>
             </div>
         </div>
 
-        <!-- VISTA PLAN B: VIDEO INTERACTIVO CON 4 CHECKPOINTS CALIBRADOS PARA 51 SEGUNDOS -->
-        <div id="view-plan-b" class="flex-1 flex flex-col w-full">
-            <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <!-- VISTA PLAN B: VIDEO INTERACTIVO CON 4 CHECKPOINTS (51s) Y DISEÑO RESPONSIVO ADAPTATIVO -->
+        <div id="view-plan-b" class="flex flex-col w-full">
+            <div class="mb-3 sm:mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <div>
-                    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">Presentación Interactiva (Video de 51s)</h2>
-                    <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm text-neutral-400">Evaluaciones distribuidas al inicio (1s), en tramos intermedios (15s y 32s) y al finalizar (49s).</p>
+                    <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-white">Presentación Interactiva (Video de 51s)</h2>
+                    <p class="text-xs sm:text-sm text-neutral-400">Evaluaciones distribuidas en 4 checkpoints (1s, 15s, 32s y 49s).</p>
                 </div>
-                <div class="flex items-center space-x-2.5 w-full sm:w-auto justify-between sm:justify-start">
-                    <div class="bg-neutral-900 border border-neutral-800 px-3.5 py-1.5 rounded-xl flex items-center space-x-2 text-xs sm:text-sm">
+                <div class="flex items-center space-x-2 w-full sm:w-auto justify-between sm:justify-start">
+                    <div class="bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-xl flex items-center space-x-2 text-xs sm:text-sm">
                         <i class="fa-solid fa-trophy text-brand-400"></i>
                         <span>Puntaje: <strong id="score-display" class="text-brand-400">0</strong> / <strong id="total-quizzes">4</strong></span>
                     </div>
@@ -108,46 +108,47 @@
                 </div>
             </div>
 
-            <div class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl relative">
+            <div class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl relative flex flex-col">
                 <div class="relative w-full bg-black aspect-video flex items-center justify-center">
                     <video id="main-video" class="w-full h-full object-contain" controls crossorigin="anonymous" playsinline>
                         <source src="assets/videointeractivo.mp4" type="video/mp4">
                         Tu navegador no soporta videos HTML5.
                     </video>
 
-                    <!-- Marcadores en la línea de tiempo sincronizada para 51 segundos -->
                     <div id="timeline-markers" class="absolute bottom-16 left-4 right-4 h-2 bg-neutral-800/80 rounded-full pointer-events-none overflow-hidden hidden sm:block">
-                        <!-- Generado por JS -->
-                    </div>
-
-                    <!-- Modal de Cuestionario Interactivo Responsive -->
-                    <div id="quiz-modal" class="absolute inset-0 bg-neutral-950/92 backdrop-blur-md z-20 hidden flex-col items-center justify-center p-3 sm:p-6 text-center modal-enter overflow-y-auto">
-                        <div class="quiz-box bg-neutral-900 border border-neutral-700/80 rounded-2xl p-4 sm:p-6 md:p-8 max-w-xl w-full shadow-2xl relative overflow-hidden text-left my-auto">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-500 to-amber-600"></div>
-                            
-                            <div class="inline-flex items-center px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-[11px] sm:text-xs font-semibold mb-2.5">
-                                <i class="fa-solid fa-circle-question mr-1.5"></i> <span id="quiz-badge-title">Evaluación Técnica</span>
-                            </div>
-
-                            <p id="topic-context" class="text-[11px] sm:text-xs text-brand-300/90 italic mb-2.5 sm:mb-3 bg-brand-950/40 p-2.5 rounded-lg border border-brand-500/20 leading-relaxed"></p>
-
-                            <h3 id="question-text" class="text-sm sm:text-base md:text-lg font-bold text-neutral-100 mb-4 sm:mb-5 leading-snug">Pregunta</h3>
-                            
-                            <div class="options space-y-2 sm:space-y-2.5 mb-4 sm:mb-5" id="options-container">
-                                <!-- Opciones inyectadas -->
-                            </div>
-
-                            <div id="feedback" class="mb-4 sm:mb-5 p-3 rounded-xl text-xs sm:text-sm font-medium hidden"></div>
-
-                            <button id="btn-continue" onclick="resumeVideo()" class="w-full bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-500 hover:to-amber-500 text-neutral-950 font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl shadow-lg shadow-brand-600/20 transition transform active:scale-[0.98] hidden flex items-center justify-center space-x-2 text-xs sm:text-sm">
-                                <span>Continuar Presentación</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
+                        <!-- Generado dinámicamente por JS -->
                     </div>
                 </div>
 
-                <div class="p-3 sm:p-4 bg-neutral-900/90 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-neutral-400 gap-2">
+                <div id="quiz-container-box" class="bg-neutral-900 border-t border-neutral-800 p-4 sm:p-6 hidden flex-col">
+                    <div class="quiz-box bg-neutral-950 border border-neutral-700/80 rounded-xl p-4 sm:p-6 w-full shadow-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-500 to-amber-600"></div>
+                        
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-[11px] sm:text-xs font-semibold">
+                                <i class="fa-solid fa-circle-question mr-1.5"></i> <span id="quiz-badge-title">Evaluación Técnica</span>
+                            </div>
+                            <span class="text-[11px] text-neutral-400 font-mono">Video pausado</span>
+                        </div>
+
+                        <p id="topic-context" class="text-xs sm:text-sm text-brand-300/95 italic mb-3 bg-brand-950/50 p-3 rounded-lg border border-brand-500/20 leading-relaxed"></p>
+
+                        <h3 id="question-text" class="text-sm sm:text-base font-bold text-neutral-100 mb-4 leading-snug">Pregunta</h3>
+                        
+                        <div class="options space-y-2 mb-4" id="options-container">
+                            <!-- Opciones inyectadas -->
+                        </div>
+
+                        <div id="feedback" class="mb-4 p-3 rounded-xl text-xs sm:text-sm font-medium hidden"></div>
+
+                        <button id="btn-continue" onclick="resumeVideo()" class="w-full bg-gradient-to-r from-brand-600 to-amber-600 hover:from-brand-500 hover:to-amber-500 text-neutral-950 font-bold py-3 px-5 rounded-xl shadow-lg shadow-brand-600/20 transition transform active:scale-[0.98] hidden flex items-center justify-center space-x-2 text-xs sm:text-sm">
+                            <span>Continuar Presentación</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-neutral-900/90 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-neutral-400 gap-1.5">
                     <div class="flex items-center space-x-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                         <span id="video-status-text" class="font-medium text-neutral-300">Reproduciendo presentación...</span>
@@ -180,7 +181,6 @@
     </div>
 
     <script>
-        // Cargar el agente D-ID de manera segura dentro de un iframe para aislar cualquier error externo
         window.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('did-secure-iframe');
             if (iframe) {
@@ -218,16 +218,12 @@
             const btnB = document.getElementById('btn-plan-b');
 
             if (mode === 'planA') {
-                viewA.classList.remove('hidden');
                 viewA.style.display = 'flex';
-                viewB.classList.add('hidden');
                 viewB.style.display = 'none';
                 btnA.className = 'px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow flex items-center';
                 btnB.className = 'px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white flex items-center';
             } else {
-                viewA.classList.add('hidden');
                 viewA.style.display = 'none';
-                viewB.classList.remove('hidden');
                 viewB.style.display = 'flex';
                 btnB.className = 'px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow flex items-center';
                 btnA.className = 'px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white flex items-center';
@@ -237,7 +233,7 @@
         }
 
         const video = document.getElementById('main-video');
-        const modal = document.getElementById('quiz-modal');
+        const quizContainerBox = document.getElementById('quiz-container-box');
         const questionText = document.getElementById('question-text');
         const topicContext = document.getElementById('topic-context');
         const quizBadgeTitle = document.getElementById('quiz-badge-title');
@@ -250,7 +246,7 @@
 
         const quizCheckpoints = [
             {
-                time: 0, // Al arrancar
+                time: 1, // Al arrancar
                 triggered: false,
                 tema: "Tema 1: El mercado global y los factores macroeconómicos",
                 contexto: `"El petróleo mueve al mundo en una red compleja de producción y consumo... donde la OPEP y los grandes mercados marcan el ritmo de la economía global."`,
@@ -342,7 +338,8 @@
         });
 
         function showQuiz(quizData, indexNum) {
-            modal.style.display = 'flex';
+            quizContainerBox.style.display = 'flex';
+            quizContainerBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             quizBadgeTitle.innerText = `Evaluación Interactiva (${indexNum} de ${quizCheckpoints.length})`;
             topicContext.innerText = quizData.contexto;
             questionText.innerText = quizData.pregunta;
@@ -352,7 +349,7 @@
 
             quizData.opciones.forEach((op) => {
                 const btn = document.createElement('button');
-                btn.className = 'w-full text-left bg-neutral-800 hover:bg-neutral-750 border border-neutral-700/80 hover:border-brand-500 text-neutral-200 p-3 rounded-xl transition text-xs sm:text-sm font-medium flex items-center justify-between group cursor-pointer';
+                btn.className = 'w-full text-left bg-neutral-900 hover:bg-neutral-800 border border-neutral-700/80 hover:border-brand-500 text-neutral-200 p-3 rounded-xl transition text-xs sm:text-sm font-medium flex items-center justify-between group cursor-pointer';
                 btn.innerHTML = `<span class="pr-2">${op.texto}</span> <i class="fa-solid fa-chevron-right text-neutral-500 group-hover:text-brand-400 text-xs shrink-0"></i>`;
                 btn.onclick = () => checkAnswer(op.correcta, quizData, btn);
                 optionsContainer.appendChild(btn);
@@ -367,14 +364,14 @@
             });
 
             if (isCorrect) {
-                selectedBtn.classList.remove('bg-neutral-800', 'border-neutral-700');
+                selectedBtn.classList.remove('bg-neutral-900', 'border-neutral-700');
                 selectedBtn.classList.add('bg-emerald-950/80', 'border-emerald-500/80', 'text-emerald-200');
                 feedback.className = 'mb-4 p-3 rounded-xl text-xs sm:text-sm font-medium bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block';
                 feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> ${quizData.explicacionCorrecta}`;
                 score++;
                 scoreDisplay.innerText = score;
             } else {
-                selectedBtn.classList.remove('bg-neutral-800', 'border-neutral-700');
+                selectedBtn.classList.remove('bg-neutral-900', 'border-neutral-700');
                 selectedBtn.classList.add('bg-rose-950/80', 'border-rose-500/80', 'text-rose-200');
                 feedback.className = 'mb-4 p-3 rounded-xl text-xs sm:text-sm font-medium bg-rose-950/60 border border-rose-500/40 text-rose-300 block';
                 feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i> ${quizData.explicacionIncorrecta}`;
@@ -383,7 +380,7 @@
         }
 
         function resumeVideo() {
-            modal.style.display = 'none';
+            quizContainerBox.style.display = 'none';
             video.play();
             videoStatusText.innerText = 'Reproduciendo presentación...';
         }
