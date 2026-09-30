@@ -218,3 +218,14 @@
                 <p class="text-sm text-slate-400 max-w-md mb-6 leading-relaxed">
                     Ya tienes tu agente listo. Haz clic en el botón inferior para insertar tu código HTML, script o iframe personalizado de inmediato.
                 </p>
+                                <button onclick="openConfigModal()" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-semibold py-3 px-6 rounded-xl text-sm transition-all shadow-lg shadow-brand-500/20 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Insertar Código de tu Agente
+                </button>
+            `;
+            document.getElementById('embed-status').innerText = 'Listo para tu Código';
+            document.getElementById('embed-status').className = 'text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded-md border border-slate-700';
+        }
+    </script>
