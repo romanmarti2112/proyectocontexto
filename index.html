@@ -48,10 +48,10 @@
 
             <!-- Selector de Modos (Plan A vs Plan B) -->
             <div class="flex items-center space-x-2 bg-neutral-900 border border-neutral-800 p-1 rounded-xl">
-                <button onclick="switchMode('planA')" id="btn-plan-a" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow">
+                <button onclick="switchMode('planA')" id="btn-plan-a" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white">
                     <i class="fa-solid fa-robot mr-1.5"></i> Plan A (Agente IA)
                 </button>
-                <button onclick="switchMode('planb')" id="btn-plan-b" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white">
+                <button onclick="switchMode('planb')" id="btn-plan-b" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow">
                     <i class="fa-solid fa-play-circle mr-1.5"></i> Plan B (Video Interactivo)
                 </button>
             </div>
@@ -60,8 +60,8 @@
 
     <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col">
         
-        <!-- VISTA PLAN A: AGENTE IA (D-ID) -->
-        <div id="view-plan-a" class="flex-1 flex flex-col w-full">
+        <!-- VISTA PLAN A: AGENTE IA (D-ID) AISLADO EN IFRAME SEGURO -->
+        <div id="view-plan-a" class="flex-1 flex-col w-full hidden">
             <div class="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Agente Inteligente de la Cuenca</h2>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="flex items-center space-x-2 text-xs bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-full text-neutral-300">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Servicio D-ID Conectado</span>
+                    <span>Agente Conectado</span>
                 </div>
             </div>
 
@@ -80,21 +80,22 @@
                         <div class="w-3 h-3 rounded-full bg-neutral-700"></div>
                         <div class="w-3 h-3 rounded-full bg-neutral-700"></div>
                     </div>
-                    <span class="text-xs font-mono text-neutral-400">d-id-agent-view-v2</span>
+                    <span class="text-xs font-mono text-neutral-400">d-id-agent-secure-frame</span>
                     <div class="w-12"></div>
                 </div>
-                <div class="flex-1 relative w-full h-full flex flex-col">
-                    <div id="did-agent-container" class="w-full h-full absolute inset-0"></div>
+                <div class="flex-1 relative w-full h-full flex flex-col items-center justify-center bg-black">
+                    <!-- Contenedor seguro para aislar errores externos de red/analytics -->
+                    <iframe id="did-secure-iframe" class="w-full h-full border-0 absolute inset-0" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
                 </div>
             </div>
         </div>
 
-        <!-- VISTA PLAN B: VIDEO INTERACTIVO CON CHECKPOINTS -->
-        <div id="view-plan-b" class="flex-1 flex-col w-full hidden">
+        <!-- VISTA PLAN B: VIDEO INTERACTIVO CON 4 CHECKPOINTS CALIBRADOS PARA 51 SEGUNDOS (1s, 15s, 32s, 49s) -->
+        <div id="view-plan-b" class="flex-1 flex flex-col w-full">
             <div class="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Presentación Interactiva con Checkpoints</h2>
-                    <p class="mt-1 text-sm text-neutral-400">El video se pausará en 4 puntos clave para evaluar los conocimientos técnicos del grupo.</p>
+                    <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Presentación Interactiva (Video de 51s)</h2>
+                    <p class="mt-1 text-sm text-neutral-400">Evaluaciones distribuidas al inicio (1s), en tramos intermedios (15s y 32s) y al finalizar (49s).</p>
                 </div>
                 <div class="flex items-center space-x-3">
                     <div class="bg-neutral-900 border border-neutral-800 px-4 py-1.5 rounded-xl flex items-center space-x-2 text-sm">
@@ -111,11 +112,11 @@
             <div class="w-full bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-2xl relative">
                 <div class="relative w-full bg-black aspect-video flex items-center justify-center">
                     <video id="main-video" class="w-full h-full object-contain" controls crossorigin="anonymous">
-                        <source src="/assets/videointeractivo.mp4" type="video/mp4">
+                        <source src="assets/videointeractivo.mp4" type="video/mp4">
                         Tu navegador no soporta videos HTML5.
                     </video>
 
-                    <!-- Marcadores en la línea de tiempo simulada -->
+                    <!-- Marcadores en la línea de tiempo sincronizada para 51 segundos -->
                     <div id="timeline-markers" class="absolute bottom-16 left-4 right-4 h-2 bg-neutral-800/80 rounded-full pointer-events-none overflow-hidden hidden md:block">
                         <!-- Generado por JS -->
                     </div>
@@ -153,7 +154,7 @@
                         <span id="video-status-text" class="font-medium text-neutral-300">Reproduciendo presentación...</span>
                     </div>
                     <div class="text-xs text-neutral-500">
-                        4 checkpoints interactivos sincronizados con la exposición.
+                        Checkpoints: 1s (Inicio) | 15s (Medio 1) | 32s (Medio 2) | 49s (Final)
                     </div>
                 </div>
             </div>
@@ -161,40 +162,56 @@
 
     </main>
 
-    <!-- Modal de Configuración de Video -->
     <div id="config-modal" class="fixed inset-0 bg-neutral-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 max-w-md w-full shadow-2xl modal-enter">
             <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-sliders mr-2 text-brand-400"></i>Configurar Video</h3>
+                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-sliders mr-2 text-brand-400"></i>Configurar Video (51s)</h3>
                 <button onclick="closeConfigModal()" class="text-neutral-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <p class="text-xs text-neutral-400 mb-4">Ingresa el enlace directo a tu archivo de video (.mp4) para la presentación.</p>
+            <p class="text-xs text-neutral-400 mb-4">Ingresa el enlace directo a tu archivo de video (.mp4) de 51 segundos.</p>
             <div class="mb-4">
                 <label class="block text-xs font-medium text-neutral-300 mb-1.5">URL del Video (MP4)</label>
-                <input type="text" id="custom-video-url" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 focus:outline-none focus:border-brand-500" placeholder="https://ejemplo.com/video.mp4">
+                <input type="text" id="custom-video-url" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-sm text-neutral-100 focus:outline-none focus:border-brand-500" placeholder="https://ejemplo.com/tu-video.mp4">
             </div>
             <div class="flex justify-end space-x-3">
                 <button onclick="closeConfigModal()" class="px-4 py-2 rounded-xl text-sm font-medium bg-neutral-800 hover:bg-neutral-700 text-neutral-300">Cancelar</button>
-                <button onclick="applyVideoUrl()" class="px-4 py-2 rounded-xl text-sm font-medium bg-brand-500 hover:bg-brand-400 text-neutral-950 font-bold shadow-lg shadow-brand-500/20">Aplicar Video</button>
+                <button onclick="applyVideoUrl()" class="px-4 py-2 rounded-xl text-sm font-medium bg-brand-500 hover:bg-brand-400 text-neutral-950 font-bold shadow-lg shadow-brand-500/20">Cargar Video</button>
             </div>
         </div>
     </div>
 
-    <!-- Script D-ID Agent -->
-    <script type="module"
-        src="https://agent.d-id.com/v2/index.js"
-        data-mode="full"
-        data-client-key="ck_ssELjmzYggPiNcDPp48be"
-        data-agent-id="v2_agt_R7RhJpvE"
-        data-name="did-agent"
-        data-monitor="true"
-        data-light-mode="false"
-        data-target-id="did-agent-container">
-    </script>
-
-    <!-- Lógica de la aplicación y Checkpoints -->
     <script>
-        // Función para alternar vistas (Plan A vs Plan B)
+        // Cargar el agente D-ID de manera segura dentro de un iframe para aislar cualquier error de telemetría o fetch externo
+        window.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('did-secure-iframe');
+            if (iframe) {
+                const agentHtml = `
+                    <!DOCTYPE html>
+                    <html lang="es" class="h-full bg-black">
+                    <head>
+                        <meta charset="UTF-8">
+                        <style>body { margin: 0; background: #000; width: 100vw; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }</style>
+                    </head>
+                    <body>
+                        <div id="did-agent-container" style="width:100%; height:100%;"></div>
+                        <script type="module"
+                            src="https://agent.d-id.com/v2/index.js"
+                            data-mode="full"
+                            data-client-key="ck_ssELjmzYggPiNcDPp48be"
+                            data-agent-id="v2_agt_R7RhJpvE"
+                            data-name="did-agent"
+                            data-monitor="true"
+                            data-light-mode="false"
+                            data-target-id="did-agent-container">
+                        <\/script>
+                    </body>
+                    </html>
+                `;
+                iframe.srcdoc = agentHtml;
+            }
+        });
+
+        // Alternar vistas Plan A / Plan B
         function switchMode(mode) {
             const viewA = document.getElementById('view-plan-a');
             const viewB = document.getElementById('view-plan-b');
@@ -203,23 +220,23 @@
 
             if (mode === 'planA') {
                 viewA.classList.remove('hidden');
+                viewA.style.display = 'flex';
                 viewB.classList.add('hidden');
                 btnA.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow';
                 btnB.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white';
             } else {
                 viewA.classList.add('hidden');
-                viewB.classList.remove('flex');
                 viewB.classList.remove('hidden');
                 viewB.style.display = 'flex';
                 btnB.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition bg-brand-500 text-neutral-950 shadow';
                 btnA.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold transition text-neutral-400 hover:text-white';
                 
-                // Asegurar renderizado de marcadores de video al cambiar
                 setTimeout(renderTimelineMarkers, 200);
             }
         }
 
-        // Lógica de video interactivo y checkpoints (Plan B)
+        // Lógica de video interactivo con 4 checkpoints calibrados exactamente para 51 segundos:
+        // 1s (Inicio), 15s (Medio 1), 32s (Medio 2), 49s (Final)
         const video = document.getElementById('main-video');
         const modal = document.getElementById('quiz-modal');
         const questionText = document.getElementById('question-text');
@@ -232,10 +249,9 @@
         const totalQuizzesEl = document.getElementById('total-quizzes');
         const videoStatusText = document.getElementById('video-status-text');
 
-        // Checkpoints configurados exactamente con las preguntas provistas
         const quizCheckpoints = [
             {
-                time: 10,
+                time: 1, // Al arrancar
                 triggered: false,
                 tema: "Tema 1: El mercado global y los factores macroeconómicos",
                 contexto: `"El petróleo mueve al mundo en una red compleja de producción y consumo... donde la OPEP y los grandes mercados marcan el ritmo de la economía global."`,
@@ -245,11 +261,11 @@
                     { texto: "B) Regulando los volúmenes globales de extracción para influir de forma directa sobre la cotización internacional del barril de crudo.", correcta: true },
                     { texto: "C) Controlando de manera exclusiva los gasoductos transcontinentales de Europa y Asia.", correcta: false }
                 ],
-                explicacionCorrecta: "¡Correcto! La OPEP regula cuotas de extracción para influir directamente en la cotización internacional del crudo.",
-                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: Regulando los volúmenes globales de extracción para influir en la cotización."
+                explicacionCorrecta: "¡Correcto! La OPEP regula los volúmenes globales de extracción para influir de forma directa sobre la cotización internacional del barril de crudo.",
+                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: Regulando los volúmenes globales de extracción para influir de forma directa sobre la cotización internacional del barril de crudo."
             },
             {
-                time: 25,
+                time: 15, // Primer tramo intermedio (15s)
                 triggered: false,
                 tema: "Tema 2: Geopolítica, transporte y vulnerabilidad local",
                 contexto: `"Conflictos e interrupciones en el transporte internacional generan olas de incertidumbre... afectando costos, inversiones y la actividad energética en Argentina."`,
@@ -259,36 +275,36 @@
                     { texto: "B) Alterando los costos de importación de insumos críticos, equipos especiales y la logística de exportación de crudo.", correcta: true },
                     { texto: "C) Provocando la paralización total e inmediata de la perforación en todas las cuencas del país por falta de gas natural.", correcta: false }
                 ],
-                explicacionCorrecta: "¡Excelente! Los costos logísticos e insumos importados sufren el impacto directo de las interrupciones marítimas globales.",
-                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: Alterando los costos de importación de insumos críticos y logística."
+                explicacionCorrecta: "¡Excelente! Alterando los costos de importación de insumos críticos, equipos especiales y la logística de exportación de crudo.",
+                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: Alterando los costos de importación de insumos críticos, equipos especiales y la logística de exportación de crudo."
             },
             {
-                time: 40,
+                time: 32, // Segundo tramo intermedio (32s)
                 triggered: false,
                 tema: "Tema 3: Realidad operativa de la Cuenca del Noroeste",
-                contexto: `"En el corazón de nuestro país, la Cuenca del Noroeste Argentino enfrenta el desafío de recuperar su producción con tecnología, planificación y mantenimiento."`,
+                contexto: `"En el corazón de nuestro país, la Cuenca del Noroeste Argentino enfrenta el desafío de recuperar su producción con tecnología, planificación y mantenimiento estratégico."`,
                 pregunta: "¿Qué característica técnica define el desafío principal de madurez en yacimientos tradicionales como los de la Cuenca del Noroeste?",
                 opciones: [
                     { texto: "A) La extracción exclusiva de petróleo mediante fracturación hidráulica masiva en formaciones de esquisto ultratigido (shale oil).", correcta: false },
                     { texto: "B) El declino natural de presión en yacimientos maduros que exige técnicas de recuperación secundaria y optimización de bombeo.", correcta: true },
                     { texto: "C) La ausencia total de hidrocarburos líquidos, encontrando únicamente depósitos de energía geotérmica.", correcta: false }
                 ],
-                explicacionCorrecta: "¡Correcto! Los campos maduros presentan declinación de presión natural, requiriendo recuperación secundaria.",
-                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: El declino natural de presión en yacimientos maduros."
+                explicacionCorrecta: "¡Correcto! El declino natural de presión en yacimientos maduros que exige técnicas de recuperación secundaria y optimización de bombeo.",
+                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la B: El declino natural de presión en yacimientos maduros que exige técnicas de recuperación secundaria y optimización de bombeo."
             },
             {
-                time: 55,
+                time: 49, // Al finalizar (49s)
                 triggered: false,
                 tema: "Tema 4: Capital humano, capacitación y rol de género",
-                contexto: `"Una industria en evolución constante que exige profesionales altamente capacitados, y donde las mujeres lideran operaciones y análisis."`,
+                contexto: `"Una industria en evolución constante que exige profesionales altamente capacitados, y donde las mujeres lideran operaciones, análisis y toma de decisiones."`,
                 pregunta: "¿Por qué la evolución tecnológica actual en los yacimientos exige un nuevo perfil profesional en la industria?",
                 opciones: [
-                    { texto: "A) Porque la digitalización, la automatización de pozos y el análisis avanzado de datos requieren competencias técnicas interdisciplinarias.", correcta: true },
+                    { texto: "A) Porque la digitalización, la automatización de pozos y el análisis avanzado de datos requieren competencias técnicas interdisciplinarias y especializadas.", correcta: true },
                     { texto: "B) Porque la normativa internacional prohíbe el uso de maquinaria pesada tradicional en todas las operaciones de campo.", correcta: false },
                     { texto: "C) Porque los ingenieros en petróleo ya no realizan tareas de campo, siendo reemplazados 100% por personal administrativo.", correcta: false }
                 ],
-                explicacionCorrecta: "¡Excelente! La transformación digital y automatización exigen habilidades avanzadas interdisciplinarias.",
-                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la A: La digitalización, automatización y análisis de datos exigen nuevas competencias."
+                explicacionCorrecta: "¡Excelente! Porque la digitalización, la automatización de pozos y el análisis avanzado de datos requieren competencias técnicas interdisciplinarias y especializadas.",
+                explicacionIncorrecta: "Incorrecto. La respuesta correcta es la A: Porque la digitalización, la automatización de pozos y el análisis avanzado de datos requieren competencias técnicas interdisciplinarias y especializadas."
             }
         ];
 
@@ -299,9 +315,9 @@
         function renderTimelineMarkers() {
             if (!timelineMarkers) return;
             timelineMarkers.innerHTML = '';
-            const duration = video.duration && !isNaN(video.duration) ? video.duration : 65;
+            const duration = video.duration && !isNaN(video.duration) && video.duration > 5 ? video.duration : 51;
             quizCheckpoints.forEach((q, idx) => {
-                const percent = (q.time / duration) * 100;
+                const percent = Math.min((q.time / duration) * 100, 98);
                 const marker = document.createElement('div');
                 marker.className = 'absolute top-0 bottom-0 w-1.5 bg-brand-400 shadow-md transform -translate-x-1/2 z-10 rounded-full';
                 marker.style.left = `${percent}%`;
@@ -317,11 +333,11 @@
         video.addEventListener('timeupdate', () => {
             const currentTime = video.currentTime;
             quizCheckpoints.forEach((quiz, index) => {
-                if (!quiz.triggered && currentTime >= quiz.time) {
+                if (!quiz.triggered && currentTime >= quiz.time && currentTime < quiz.time + 1.0) {
                     video.pause();
                     showQuiz(quiz, index + 1);
                     quiz.triggered = true;
-                    videoStatusText.innerText = `Pausado en evaluación #${index + 1}`;
+                    videoStatusText.innerText = `Pausado en evaluación #${index + 1} (${quiz.time}s)`;
                 }
             });
         });
@@ -391,7 +407,7 @@
                 score = 0;
                 scoreDisplay.innerText = score;
                 closeConfigModal();
-                videoStatusText.innerText = 'Video actualizado correctamente.';
+                videoStatusText.innerText = 'Video configurado correctamente (51s).';
             }
         }
     </script>
